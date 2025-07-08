@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const auth = require('middleware/auth'); // Middleware de autenticação
-const userRoutes = require('routes/userRoutes');
-const appointmentRoutes = require('routes/appointmentRoutes');
+
+// Caminhos corrigidos (usando ../ para sair da pasta "routes")
+const auth = require('../middleware/auth');
+const userRoutes = require('./routes/userRoutes');
+const appointmentRoutes = require('./routes/appointmentRoutes');
 
 // Rota de teste protegida
 router.get('/protegida', auth, (req, res) => {
