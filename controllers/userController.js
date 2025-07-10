@@ -23,7 +23,14 @@ async function register(req, res) {
       tipo
     });
 
-    await newUser.save();
+    try {
+      await newUser.save();
+    } catch (saveError) {
+      if (saveError.code === 11000) {
+        return res.status(400).json({ message: 'Email já cadastrado (confirmação no save)' });
+      }
+      throw saveError;
+    }
 
     res.status(201).json({ message: 'Usuário criado com sucesso' });
   } catch (error) {
