@@ -46,10 +46,10 @@ async function createAppointment(req, res) {
       text: `Olá ${prestadorUser.nome}, você tem um novo agendamento para ${servico} com o cliente ${cliente.nome} em ${date.toLocaleString()}.`
     };
 
-    await Promise.all([
-      transporter.sendMail(mailOptionsCliente),
-      transporter.sendMail(mailOptionsPrestador)
-    ]);
+   // await Promise.all([
+//   transporter.sendMail(mailOptionsCliente),
+//   transporter.sendMail(mailOptionsPrestador)
+// ]);
 
     res.status(201).json({ message: 'Agendamento criado com sucesso e e-mails enviados', appointment });
   } catch (error) {
